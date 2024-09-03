@@ -8,7 +8,10 @@ import { HiOutlineMenuAlt3, HiOutlineUserCircle } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import avatar from "../../public/assets/avatar.svg";
 import Login from "../components/Auth/Login";
-import { useSocialAuthMutation } from "../redux/features/auth/authApi";
+import {
+  useLogOutQuery,
+  useSocialAuthMutation,
+} from "../redux/features/auth/authApi";
 import CustomModal from "../utils/CustomModal";
 import NavItems from "../utils/NavItems";
 import ThemeSwitcher from "../utils/ThemeSwitcher";
@@ -30,6 +33,10 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   const { data } = useSession();
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
   // console.log("data", data);
+  const [logout, setLogout] = useState(false);
+  const {} = useLogOutQuery(undefined, {
+    skip: !logout ? true : false,
+  });
 
   useEffect(() => {
     if (!user) {
@@ -42,8 +49,14 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
       }
     }
 
-    if (isSuccess) {
-      toast.success("Login Successfully");
+    if (data === null) {
+      if (isSuccess) {
+        toast.success("Login Successfully");
+      }
+    }
+
+    if (data === null) {
+      setLogout(true);
     }
   }, [data, user]);
 
@@ -99,9 +112,14 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
               {user ? (
                 <Link href={"/profile"}>
                   <Image
-                    src={user.avatar ? user.avatar : avatar}
+                    src={user.avatar ? user.avatar.url : avatar}
                     alt="user image"
                     className="w-[30px] h-[30px] rounded-full cursor-pointer"
+                    width={30}
+                    height={30}
+                    style={{
+                      border: activeItem === 5 ? "2px solid #37a39a" : "",
+                    }}
                   ></Image>
                 </Link>
               ) : (
