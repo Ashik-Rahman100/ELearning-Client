@@ -18,7 +18,7 @@ export default function ProfilePage(props: Props) {
     <div>
       <Protected>
         <Heading
-          title={`${user?.name} Profile`}
+          title={`${user?.name} Profile - ELearning`}
           description="E-Learning is a platform for students to learn and get help from teachers"
           keywords="Programming,MERN,Redux,Machine Learning"
         />

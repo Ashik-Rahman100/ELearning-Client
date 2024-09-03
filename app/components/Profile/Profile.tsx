@@ -3,6 +3,7 @@
 import { useLogOutQuery } from "@/app/redux/features/auth/authApi";
 import { signOut } from "next-auth/react";
 import { useState } from "react";
+import ChangePassword from "./ChangePassword";
 import ProfileInfo from "./ProfileInfo";
 import SidebarProfile from "./SideBarProfile";
 
@@ -17,9 +18,9 @@ export default function Profile({ user }: any) {
     skip: !logout ? true : false,
   });
 
-  const logOutHandler = async () => {
+  const logOutHandler =  () => {
     setLogout(true);
-    await signOut();
+     signOut();
   };
 
   if (typeof window !== "undefined") {
@@ -36,7 +37,7 @@ export default function Profile({ user }: any) {
       <div
         className={`w-[60px] 800px:w-[310px] h-[450px] dark:bg-slate-900 bg-white light bg-opacity-90 border dark:border-[#ffffff1d] border:[#ffffff1d] rounded-[5px] shadow-md dark:shadow-sm mt-[80px] mb-[80px] sticky ${
           scroll ? "top-[120px]" : "top-[30px]"
-        } `}
+        } left-[30px] `}
       >
         <SidebarProfile
           user={user}
@@ -48,7 +49,8 @@ export default function Profile({ user }: any) {
       </div>
 
       <div className="w-full h-full  bg-transparent mt-[80px]">
-        {active === 1 && <ProfileInfo avatar={avatar} user={user} />}
+        <div>{active === 1 && <ProfileInfo avatar={avatar} user={user} />}</div>
+        <div>{active === 2 && <ChangePassword />}</div>
       </div>
     </div>
   );
