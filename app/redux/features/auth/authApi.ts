@@ -1,5 +1,5 @@
 import { apiSlice } from "../api/apiSlice";
-import { userLoggedIn, userRegistration } from "./authSlice";
+import { userLoggedIn, userLoggedOut, userRegistration } from "./authSlice";
 
 type RegistrationResponse = {
   message: string;
@@ -57,7 +57,7 @@ export const authApi = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
-          console.log(result.data);
+          // console.log(result.data);
           dispatch(
             userLoggedIn({
               accessToken: result.data.accessToken,
@@ -100,13 +100,13 @@ export const authApi = apiSlice.injectEndpoints({
         method: "GET",
         credentials: "include" as const,
       }),
-      // async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-      //   try {
-      //     dispatch(userLoggedOut());
-      //   } catch (error: any) {
-      //     console.log(error);
-      //   }
-      // },
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        try {
+          dispatch(userLoggedOut());
+        } catch (error: any) {
+          console.log(error);
+        }
+      },
     }),
   }),
 });
