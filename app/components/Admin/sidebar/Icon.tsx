@@ -1,0 +1,37 @@
+import {
+  ArrowBackIosNewOutlined,
+  ArrowForwardIosOutlined,
+  BarChartOutlined,
+  ExitToApp,
+  Groups,
+  ManageHistory,
+  MapOutlined,
+  OndemandVideoOutlined,
+  PeopleOutlined,
+  Quiz,
+  ReceiptOutlined,
+  Settings,
+  VideoCallOutlined,
+  Web,
+  Wysiwyg,
+} from "@mui/icons-material";
+import AddHomeOutlinedIcon from "@mui/icons-material/AddHomeOutlined";
+
+export {
+  AddHomeOutlinedIcon,
+  ArrowBackIosNewOutlined,
+  ArrowForwardIosOutlined,
+  BarChartOutlined,
+  ExitToApp,
+  Groups,
+  ManageHistory,
+  MapOutlined,
+  OndemandVideoOutlined,
+  PeopleOutlined,
+  Quiz,
+  ReceiptOutlined,
+  Settings,
+  VideoCallOutlined,
+  Web,
+  Wysiwyg,
+};
